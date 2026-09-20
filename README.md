@@ -1,111 +1,140 @@
 # Mac Dev Setup 2026
 
-**A fresh Mac. A current developer toolkit. No mystery script.**
+**Open-source first. The essentials for a fresh Mac, without the bloat.**
 
 [![CI](https://github.com/rnjsxodyd90/mac-dev-setup-2026/actions/workflows/ci.yml/badge.svg)](https://github.com/rnjsxodyd90/mac-dev-setup-2026/actions/workflows/ci.yml)
 [![Freshness](https://github.com/rnjsxodyd90/mac-dev-setup-2026/actions/workflows/freshness.yml/badge.svg)](https://github.com/rnjsxodyd90/mac-dev-setup-2026/actions/workflows/freshness.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An opinionated, open-source Mac setup for developers in 2026: **Aside, Cursor, Claude, Ghostty, VS Code, Zed, uv, mise, OrbStack** and a small set of everyday tools.
+A curated toolkit for setting up a new Mac: everyday apps, developer tools, terminal utilities, containers, media, file sharing, notes and backups. **Open-source tools are the preferred path.** Proprietary, mixed-license and unverified-open-source alternatives live in a separate, explicit `optional` profile.
 
-Browse the [app catalog](docs/apps.md), choose your profiles, review the plan, then install. No Ansible, Node, Python or account is required to run the setup script. Homebrew is required only when you choose to install.
+**50 choices: 42 open-source entries and 8 optional exceptions.** These are options, not 50 things everybody needs. Start small, pick the profiles you actually use, and review the plan before installing.
 
-## Why another Mac setup repo?
+[Browse all apps and licenses](docs/apps.md) · [After-install checklist](docs/after-install.md) · [Freshness policy](docs/maintenance.md)
 
-Good setup repos exist. This one focuses on **freshness you can inspect**, rather than a giant personal package dump:
+## The open-source-first choices
 
-- **23 curated packages**, organized into five optional profiles.
-- **Aside and modern AI tools** included explicitly, not buried in an outdated list.
-- **Dated Homebrew metadata** with source links and observed versions.
-- **Weekly automated checks** for removed/deprecated packages, version drift and compatibility changes.
-- **Review-first installation.** Running the script without `--apply` only prints a plan.
-- **No forced upgrades, dotfile replacement, macOS tweaks or cleanup.**
+| Need | Preferred choice | Why |
+| --- | --- | --- |
+| Browser | **Firefox** | Open-source everyday browser |
+| Passwords | **KeePassXC** | Local encrypted database; no hosted account required |
+| Code editor | **VSCodium** | Community-built VS Code distribution under an open-source license |
+| Terminal | **Ghostty** | Native terminal with GPU acceleration |
+| Window positioning | **Rectangle** | Keyboard-driven window layouts |
+| Containers | **Colima + Docker CLI** | Open-source local container tooling, without Docker Desktop or OrbStack |
+| Languages and Python | **mise + uv** | Project-specific runtimes and Python environments |
+| Clipboard and system stats | **Maccy + Stats** | Focused desktop utilities |
+| Local file sharing | **LocalSend** | Transfer files between nearby devices |
+| Media | **VLC or IINA** | Choose your preferred player |
+| Notes and backups | **Joplin + restic** | Optional notes app and encrypted backup CLI |
+| Local-model runtime | **Ollama** | Optional runtime; model licenses are separate |
 
-**2026 is the curation edition, not a version lock.** Installs use the versions Homebrew makes available at execution time. This project does not claim to be the newest repo or track every vendor release instantly. A green freshness check verifies metadata, not successful installation or app security.
+Already happy with Apple's built-in apps? Keep them. This script never changes your default browser, password manager, editor or shell. Paid services can exist alongside open-source applications; licensing details are linked in the catalog.
 
 ## Quick start
 
-Target: an Apple Silicon Mac on macOS 15 or later. Check individual app requirements. Intel Macs are not a verified target; some optional apps are ARM-only.
+Target: current Apple Silicon Macs on macOS 15+. Requirements vary by package. Intel compatibility is not comprehensively verified.
 
 1. Install Apple's command-line tools if needed: `xcode-select --install`.
-2. Install Homebrew using its [official instructions](https://brew.sh/). The setup script never downloads or installs Homebrew for you.
-3. Clone and inspect this repository:
+2. Install Homebrew using its [official instructions](https://brew.sh/). We never install Homebrew automatically.
+3. Clone, inspect, and preview:
 
 ```bash
 git clone https://github.com/rnjsxodyd90/mac-dev-setup-2026.git
 cd mac-dev-setup-2026
 
-# Preview only: no installs, network calls or configuration changes.
-bash setup.sh --profile essentials --profile developer --profile ai
+# Everyday essentials only. No network, installations or settings changes.
+bash setup.sh
 
-# After reviewing the files and preview, apply the same selection.
-bash setup.sh --profile essentials --profile developer --profile ai --apply
+# A broader developer setup, still preview-only.
+bash setup.sh --profile essentials --profile developer --profile terminal
+
+# After reviewing the files and preview, install the same selection.
+bash setup.sh --profile essentials --profile developer --profile terminal --apply
 ```
 
-The apply step asks for confirmation. It refreshes Homebrew metadata and installs missing packages without upgrading already installed ones. Homebrew may still install or update necessary dependencies and ask for permissions. Existing manually installed apps may need individual attention; the script does not overwrite them forcibly.
+No Ansible, Node or Python is needed to run `setup.sh`. Homebrew is needed only to apply a plan. Node.js 22+ is for maintainers and tests.
 
-### Choose your profiles
+## Choose your profiles
+
+Profiles are independent and repeatable. **Nothing automatically includes `optional`.**
 
 | Profile | Includes |
 | --- | --- |
-| `essentials` (default) | Git, GitHub CLI, jq, ripgrep, fzf, Bitwarden, Rectangle |
-| `developer` | Ghostty, VS Code, mise, uv |
-| `ai` | **Aside**, Cursor, Claude |
-| `cloud` | OrbStack, kubectl, Helm, K9s, OpenTofu |
-| `extras` | Zed, iTerm2, Raycast, Obsidian |
+| `essentials` (default) | Firefox, KeePassXC, Rectangle, Git, GitHub CLI, jq |
+| `developer` | VSCodium, Ghostty, mise, uv, direnv, ShellCheck, just, HTTPie CLI |
+| `terminal` | ripgrep, fd, fzf, bat, eza, zoxide, Starship, tmux, btop, tlrc (tldr client) |
+| `cloud` | Colima, Docker CLI, Docker Compose, kubectl, Helm, K9s, OpenTofu |
+| `apps` | VLC, IINA, Stats, Maccy, LocalSend |
+| `extras` | Zed, iTerm2, Neovim, Joplin, restic |
+| `ai` | Ollama runtime only; no model downloads or hosted AI account setup |
+| `optional` | Aside, Cursor, Claude, Microsoft VS Code, OrbStack, Raycast, Obsidian, Bitwarden |
 
-Profiles are independent. Selecting `ai` alone installs only that profile. Combine profiles explicitly. Cursor and Zed are editor alternatives; iTerm2 is a Ghostty alternative. You do not need all of them.
+`extras` contains alternatives, not prerequisites. `apps` includes both media players for discoverability; trim the profile if you want just one. See [individual selection](#install-only-what-you-want).
 
-### Useful commands
+### Install only what you want
 
 ```bash
-bash setup.sh --help
-bash setup.sh                         # preview Essentials
-bash setup.sh --profile ai            # preview Aside, Cursor, Claude
-bash setup.sh --profile cloud --apply # confirm and install cloud tools
+# Preview a single profile.
+bash setup.sh --profile cloud
 
-# Optional: allow upgrades for selected packages.
+# Confirm and install it, without starting services.
+bash setup.sh --profile cloud --apply
+
+# Allow upgrades for selected packages, explicitly.
 bash setup.sh --profile developer --apply --upgrade
 
-# Noninteractive installation after reviewing the repo:
-bash setup.sh --profile essentials --apply --yes
+# Proprietary/mixed-license exceptions are always opt-in.
+bash setup.sh --profile optional
 ```
 
-For individual choices, copy a generated Brewfile to your own file, remove unwanted entries, then run `brew bundle install --file=My.Brewfile --no-upgrade`. Brewfiles are executable Ruby: review any custom file before running it. Never put passwords, API keys or personal configuration in a public repository.
-
-## Aside
-
-Aside is included through the [official Homebrew cask](https://formulae.brew.sh/cask/aside):
+For finer selection, copy a profile to `My.Brewfile`, remove entries you do not want, inspect it, then run:
 
 ```bash
-brew install --cask aside
+brew bundle install --file=My.Brewfile --no-upgrade
 ```
 
-Or download it from [aside.com/download](https://aside.com/download). This project is independent and is not affiliated with Aside or other listed vendors. Installing an AI app does not authorize access to your files/accounts, provide a subscription, or guarantee private/local processing. Review each app's settings and terms.
+Brewfiles are executable Ruby. Review any file before running it. Keep personal configuration and secrets out of this public repo. `--yes` skips confirmation only with `--apply`; `--dry-run` always wins if both are supplied.
 
-Compatibility note: Aside's vendor help states macOS 15+, whereas the checked cask declares macOS 13+. This guide follows the stricter vendor requirement. See the [catalog](docs/apps.md).
+## Safe by default
 
-## How freshness works
+- Preview mode makes no network calls and never invokes Homebrew.
+- Apply requires confirmation unless `--yes` is explicitly supplied.
+- Homebrew metadata is refreshed, but already-installed packages are not upgraded unless `--upgrade` is selected. Required dependencies can still be installed or updated by Homebrew.
+- No dotfile replacement, uninstall/cleanup operations, background service starts, model downloads or macOS preference changes.
+- No account sign-ins, credentials, purchases or permissions are configured for you.
+- Existing manually installed apps may need individual attention; the script does not force replacements.
 
-- `catalog/apps.json`: curated package names, profiles, reasons and source URLs.
-- `catalog/verified.json`: last committed successful Homebrew metadata snapshot.
-- `docs/apps.md`: generated catalog with observed versions and timestamp.
-- `profiles/*.Brewfile`: generated, unpinned install lists.
-- **CI:** validates generated files and tests installer behavior with mocks, without installing apps.
-- **Freshness workflow:** checks Homebrew weekly and on relevant changes; uploads a report and opens/updates one issue if review is needed. It does not silently alter your Mac or approve new packages.
+## Open source means more than free
 
-Checks can fail because of networking or service outages. Failure preserves the last valid snapshot and is never presented as fresh verification. GitHub can delay or disable scheduled runs; check the latest run, not just this description. See [maintenance](docs/maintenance.md).
+The catalog records a license classification and evidence link for every entry. Open-source entries refer to the upstream project's declared license, not a complete legal audit of every bundled dependency or optional service.
 
-## What is not automated
+- **VSCodium and Microsoft's VS Code binary are not the same licensing choice.** Some Microsoft extensions and marketplace features may be unavailable in VSCodium.
+- **Docker CLI and Docker Compose are not Docker Desktop.** Colima supplies the local VM/runtime; it still needs to be started manually.
+- **Bitwarden has mixed licensing across its repository.** It remains an optional choice; we do not label the entire distribution uniformly open source.
+- **Ollama's runtime license does not cover downloaded models.** Check each model separately. Nothing starts or downloads automatically.
+- Proprietary or insufficiently verified apps, including Aside, stay optional. Inclusion does not imply affiliation or endorsement.
 
-Sign-ins, paid licenses, App Store purchases, Xcode, SSH keys, Git identity, cloud credentials, editor settings, shell changes, FileVault and backups. Follow the [after-install checklist](docs/after-install.md).
+## Freshness you can inspect
 
-No clean-Mac or physical-device end-to-end installation has been performed for this initial release. Passing mock tests is not evidence of that. App compatibility and account-dependent features remain vendor-controlled.
+**2026 is the curation edition, not a version lock or a claim to be the newest repo.** Installs use Homebrew's available versions at execution time; Homebrew can lag vendor releases.
+
+- `catalog/apps.json`: profiles, purpose, license classification and evidence links.
+- `catalog/verified.json`: last successful committed Homebrew metadata snapshot.
+- `profiles/*.Brewfile` and `docs/apps.md`: generated lists, observed versions and dates.
+- CI validates the catalog and enforces that only `optional` can contain non-open-source entries. Installer tests use mocks, not real installs.
+- Weekly freshness checks report version, compatibility and formula-license changes and open/update one review issue. They do not silently change package choices.
+
+Failed checks preserve the last valid snapshot. A green metadata check is **not** clean-Mac installation testing, upstream license revalidation, a security audit or verification of every vendor release. GitHub schedules can be delayed or disabled; inspect the latest run.
+
+## After installing
+
+Follow the [manual checklist](docs/after-install.md) for shell activation, containers, backups, privacy and optional accounts. No clean-Mac end-to-end installation is claimed. Hosted macOS/Linux CI covers mocked installer behavior and catalog checks only.
 
 ## Contribute
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Suggest tools with a clear use case and an official installation source, not just a trend. Small, maintained profiles beat an enormous list.
+Prefer a maintained open-source tool with a clear everyday use case over adding every fashionable app. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Inspired by [mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook), [Lissy93/Brewfile](https://github.com/Lissy93/Brewfile) and [Homebrew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile). This is an independent implementation, not a fork of their scripts.
+Inspired by [mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook), [Lissy93/Brewfile](https://github.com/Lissy93/Brewfile) and [Homebrew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile). Independent implementation, not a fork.
 
-[MIT license](LICENSE). Individual apps retain their own licenses.
+[MIT license](LICENSE). Individual apps keep their own licenses.

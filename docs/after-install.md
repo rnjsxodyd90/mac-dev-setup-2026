@@ -1,17 +1,42 @@
 # After installation
 
-- Open each installed app once and review permissions before granting them.
-- Sign into your password manager. Configure recovery and MFA before relying on it.
-- Configure Git name/email locally and choose whether to publish your email in commits.
-- Authenticate GitHub CLI yourself with `gh auth login`; do not paste credentials into this repo.
-- Choose one primary editor, terminal and browser. No defaults are changed by setup.sh.
-- For Aside, Cursor and Claude, review account requirements, billing, external processing, retention settings and workplace policies before adding sensitive context.
-- Install language runtimes for your projects through mise; the setup does not select versions or modify shell initialization. uv does not automatically migrate existing Python projects.
-- Open OrbStack and check its licensing for your use. Installing Kubernetes tools does not connect to any cluster.
-- Xcode is optional and installed separately through Apple. Sign in and accept its terms yourself.
-- Configure Time Machine/backups and inspect FileVault in System Settings. This repo does not change either.
-- Keep credentials, device names, work files and local configuration out of public commits.
+Installation is only the first step. No services, accounts, shell changes or existing password-manager settings are configured automatically.
+
+## Everyday apps
+
+- Keep your preferred default browser. Firefox installation does not change it.
+- KeePassXC: create or open an encrypted password database, set a strong master password, and make a recovery/backup plan. Sync is your choice, not configured here. Keep using Bitwarden if it suits you; it is listed separately as a mixed-license alternative.
+- Rectangle, Maccy and similar tools can need system permissions. Read the request before granting it. Clipboard history can contain sensitive information: configure exclusions, retention and pause behavior.
+- LocalSend: accept only transfers you expect and check local-network permissions.
+- Choose VLC or IINA if you do not need both. Joplin sync and encryption settings require a separate setup decision.
+
+## Development and shell
+
+- Configure Git identity yourself; consider a GitHub no-reply email for public commits.
+- Authenticate GitHub CLI with `gh auth login` if wanted. Never commit credentials.
+- VSCodium uses an alternative extension marketplace; some Microsoft extensions/features may be restricted. Check each extension's license and compatibility.
+- mise, direnv, zoxide, Starship and fzf require optional shell integration for their full experience. Follow each tool's official instructions and review changes to your shell files. `direnv allow` permits code in a project's `.envrc`; trust the project first.
+- Install language runtime versions per project with mise; uv does not migrate existing Python environments for you.
+- Full Xcode is optional and separate from Command Line Tools. Install it through Apple and accept its terms yourself.
+
+## Containers and cloud
+
+- `colima start` creates/starts a local VM when you choose to run it. It is not run by setup.sh.
+- `docker` is the open-source CLI, not Docker Desktop. Verify context with `docker context ls` before contacting a daemon.
+- Homebrew's Docker Compose formula may require `cliPluginsExtraDirs` in your existing `~/.docker/config.json`. Read `brew info docker-compose`; merge the entry using the value of `brew --prefix`. Do not overwrite your existing Docker configuration or credentials.
+- `docker compose version` checks whether discovery works. Consult Colima and Docker docs if it does not.
+- kubectl, Helm, K9s and OpenTofu install no cluster access or cloud credentials. Verify context/workspace before any real operation.
+
+## Backups and local AI
+
+- Configure Time Machine/backups and inspect FileVault yourself. This repo changes neither.
+- restic needs a backup destination and encryption-password/recovery plan. Test restoring data before relying on backups. No repository is initialized by setup.sh.
+- Ollama is installed as a runtime only. Starting a server and pulling a model are explicit separate steps. Check model licenses, memory/storage requirements, server exposure and any cloud features. An open-source runtime is not proof of private processing for every model or integration.
+
+## Optional exceptions
+
+Aside, Cursor, Claude, VS Code, OrbStack, Raycast, Obsidian and Bitwarden are separate opt-in choices. Review vendor terms, account requirements and permissions. For AI tools, inspect billing, external processing and retention settings before using sensitive data.
 
 ## If a package fails
 
-Read the Homebrew error. Check OS/architecture requirements, disk space, conflicts with a manually installed app, and vendor availability. Do not disable Gatekeeper or System Integrity Protection to force an installation. Re-run the same reviewed selection after fixing the issue; previously installed packages are not forcibly removed. There is no rollback of successful earlier installs.
+Read the Homebrew error. Check OS/architecture requirements, disk space, existing-app conflicts and vendor availability. Never disable Gatekeeper or System Integrity Protection to force an install. Re-run the reviewed selection after fixing the issue. Earlier successful installs are not rolled back or forcibly removed.

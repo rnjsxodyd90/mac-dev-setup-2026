@@ -88,3 +88,39 @@ test('disabled packages fail the refresh and preserve snapshot', async t => {
   assert.match(result.stderr, /disabled or deprecated/);
   assert.equal(await readFile(path.join(dir, 'catalog/verified.json'), 'utf8'), before);
 });
+
+test('non-open-source packages are restricted to the optional profile', async t => {
+  const dir = await fixture(t);
+  const catalog = JSON.parse(await readFile(path.join(dir, 'catalog/apps.json')));
+  catalog.packages.find(p => p.id === 'aside').profile = 'essentials';
+  await writeFile(path.join(dir, 'catalog/apps.json'), JSON.stringify(catalog));
+  const result = run(dir, 'generate');
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Non-open-source entry outside optional/);
+});
+test('open-source entries require license evidence', async t => {
+  const dir = await fixture(t);
+  const catalog = JSON.parse(await readFile(path.join(dir, 'catalog/apps.json')));
+  delete catalog.packages.find(p => p.id === 'ghostty').license.evidence;
+  await writeFile(path.join(dir, 'catalog/apps.json'), JSON.stringify(catalog));
+  const result = run(dir, 'generate');
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Missing license evidence/);
+});
+test('default and developer profiles use the intended open-source choices', async () => {
+  const catalog = JSON.parse(await readFile(path.join(root, 'catalog/apps.json')));
+  for (const p of catalog.packages.filter(p => p.profile !== 'optional')) assert.equal(p.license.status, 'open-source', p.id);
+  assert.equal(catalog.packages.find(p => p.id === 'vscodium').profile, 'developer');
+  assert.equal(catalog.packages.find(p => p.id === 'colima').profile, 'cloud');
+  assert.equal(catalog.packages.find(p => p.id === 'keepassxc').profile, 'essentials');
+  for (const id of ['aside', 'visual-studio-code', 'cursor', 'claude', 'orbstack', 'bitwarden']) assert.equal(catalog.packages.find(p => p.id === id).profile, 'optional');
+});
+test('formula license drift triggers review without replacing snapshot', async t => {
+  const dir = await fixture(t);
+  const before = await readFile(path.join(dir, 'catalog/verified.json'), 'utf8');
+  const preload = await mockFetch(dir, successMock + '\nconst original = fetch; globalThis.fetch = async url => { const r = await original(url); const p = await r.json(); if (p.kind === "formula") p.license = "fixture-changed-license"; return {ok:true,json:async()=>p}; };');
+  const result = run(dir, 'audit', preload);
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(await readFile(path.join(dir, 'reports/freshness.md'), 'utf8'), /license changed/);
+  assert.equal(await readFile(path.join(dir, 'catalog/verified.json'), 'utf8'), before);
+});

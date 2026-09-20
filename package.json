@@ -1,10 +1,12 @@
 {
   "name": "mac-dev-setup-2026",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "A freshness-first, review-before-install developer setup for macOS.",
-  "engines": { "node": ">=22" },
+  "description": "Open-source-first Mac essentials and developer tools for 2026, with review-first Homebrew profiles and freshness checks.",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/catalog.mjs check",

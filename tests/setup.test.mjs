@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const source = new URL('../setup.sh', import.meta.url);
-const profiles = { essentials: 'brew "git"\n', developer: 'brew "node"\n', ai: 'cask "ollama"\n', cloud: 'brew "terraform"\n', extras: 'cask "iterm2"\n' };
+const profiles = { essentials: 'brew "git"\n', developer: 'brew "node"\n', ai: 'cask "ollama"\n', cloud: 'brew "colima"\n', extras: 'cask "iterm2"\n', terminal: 'brew "bat"\n', apps: 'cask "localsend"\n', optional: 'cask "aside"\n' };
 async function repo() {
   const dir = await mkdtemp(join(tmpdir(), 'mac-dev-setup-'));
   await mkdir(join(dir, 'profiles')); await copyFile(source, join(dir, 'setup.sh')); await chmod(join(dir, 'setup.sh'), 0o755);
@@ -58,4 +58,17 @@ test('apply rejects noninteractive confirmation, absent brew, and root', async t
   await writeFile(wrapper, (await readFile(wrapper, 'utf8')).replaceAll('/opt/homebrew/bin/brew', '/missing/homebrew/bin/brew').replaceAll('/usr/local/bin/brew', '/missing/local/bin/brew'));
   assert.match(run(b, ['--apply', '--yes'], { PATH: bbin + ':/usr/bin:/bin' }).stderr, /Homebrew was not found/);
   const c = await repo(), cbin = await mockBin(c, { brew: 'exit 0', uid: '0' }); t.after(() => rm(c, { recursive: true, force: true })); assert.match(run(c, ['--apply', '--yes'], { PATH: cbin + ':' + process.env.PATH }).stderr, /as root/);
+});
+
+test('--dry-run wins over --apply regardless of argument order', async t => {
+  const dir = await repo(), log = join(dir, 'brew.log'), bin = await mockBin(dir, { brew: 'exit 99' });
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  for (const args of [['--dry-run', '--apply', '--yes'], ['--apply', '--yes', '--dry-run']]) assert.equal(run(dir, args, { PATH: bin + ':' + process.env.PATH, LOG: log }).status, 0);
+  await assert.rejects(readFile(log));
+});
+test('expanded open-source profiles and optional exceptions are selectable', async t => {
+  const dir = await repo(); t.after(() => rm(dir, { recursive: true, force: true }));
+  const r = run(dir, ['--profile', 'terminal', '--profile', 'apps', '--profile', 'optional']);
+  assert.equal(r.status, 0); assert.match(r.stdout, /\[terminal\][\s\S]*\[apps\][\s\S]*\[optional\]/);
+  assert.match(r.stderr, /mixed-license/);
 });

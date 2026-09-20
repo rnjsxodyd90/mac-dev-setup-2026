@@ -1,43 +1,347 @@
 {
-  "checkedAt": "2026-09-20T17:17:13.043Z",
-  "scope": "Homebrew metadata only; not clean-Mac installation tests or vendor-latest release verification.",
+  "checkedAt": "2026-09-20T17:34:31.694Z",
+  "scope": "Homebrew package and formula-license metadata only; cask-license evidence reviewed separately. Not clean-Mac installation tests or vendor-latest release verification.",
   "packages": [
     {
-      "kind": "cask",
-      "id": "aside",
-      "version": "1.0.914.1",
-      "homepage": "https://aside.com/",
-      "desc": "Web browser with built-in AI assistant",
+      "id": "git",
+      "kind": "formula",
+      "version": "2.55.0",
+      "homepage": "https://git-scm.com",
+      "license": "GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause AND MIT",
+      "desc": "Distributed revision control system",
       "deprecated": false,
       "disabled": false,
-      "depends_on": {
-        "macos": {
-          ">=": [
-            "13"
-          ]
-        }
-      },
-      "token": "aside"
+      "token": "git"
     },
     {
+      "id": "gh",
+      "kind": "formula",
+      "version": "2.101.0",
+      "homepage": "https://cli.github.com/",
+      "license": "MIT",
+      "desc": "GitHub command-line tool",
+      "deprecated": false,
+      "disabled": false,
+      "token": "gh"
+    },
+    {
+      "id": "jq",
+      "kind": "formula",
+      "version": "1.8.2",
+      "homepage": "https://jqlang.github.io/jq/",
+      "license": "MIT",
+      "desc": "Lightweight and flexible command-line JSON processor",
+      "deprecated": false,
+      "disabled": false,
+      "token": "jq"
+    },
+    {
+      "id": "mise",
+      "kind": "formula",
+      "version": "2026.9.12",
+      "homepage": "https://mise.jdx.dev/",
+      "license": "MIT",
+      "desc": "Polyglot runtime manager (asdf rust clone)",
+      "deprecated": false,
+      "disabled": false,
+      "token": "mise"
+    },
+    {
+      "id": "uv",
+      "kind": "formula",
+      "version": "0.12.17",
+      "homepage": "https://docs.astral.sh/uv/",
+      "license": "Apache-2.0 OR MIT",
+      "desc": "Extremely fast Python package installer and resolver, written in Rust",
+      "deprecated": false,
+      "disabled": false,
+      "token": "uv"
+    },
+    {
+      "id": "direnv",
+      "kind": "formula",
+      "version": "2.37.1",
+      "homepage": "https://direnv.net/",
+      "license": "MIT",
+      "desc": "Load/unload environment variables based on $PWD",
+      "deprecated": false,
+      "disabled": false,
+      "token": "direnv"
+    },
+    {
+      "id": "shellcheck",
+      "kind": "formula",
+      "version": "0.11.0",
+      "homepage": "https://www.shellcheck.net/",
+      "license": "GPL-3.0-or-later",
+      "desc": "Static analysis and lint tool, for (ba)sh scripts",
+      "deprecated": false,
+      "disabled": false,
+      "token": "shellcheck"
+    },
+    {
+      "id": "just",
+      "kind": "formula",
+      "version": "1.58.0",
+      "homepage": "https://just.systems",
+      "license": "CC0-1.0",
+      "desc": "Handy way to save and run project-specific commands",
+      "deprecated": false,
+      "disabled": false,
+      "token": "just"
+    },
+    {
+      "id": "httpie",
+      "kind": "formula",
+      "version": "3.2.4",
+      "homepage": "https://httpie.io/",
+      "license": "BSD-3-Clause",
+      "desc": "User-friendly cURL replacement (command-line HTTP client)",
+      "deprecated": false,
+      "disabled": false,
+      "token": "httpie"
+    },
+    {
+      "id": "ripgrep",
+      "kind": "formula",
+      "version": "15.2.0",
+      "homepage": "https://github.com/BurntSushi/ripgrep",
+      "license": "Unlicense",
+      "desc": "Search tool like grep and The Silver Searcher",
+      "deprecated": false,
+      "disabled": false,
+      "token": "ripgrep"
+    },
+    {
+      "id": "fd",
+      "kind": "formula",
+      "version": "10.5.0",
+      "homepage": "https://github.com/sharkdp/fd",
+      "license": "Apache-2.0 OR MIT",
+      "desc": "Simple, fast and user-friendly alternative to find",
+      "deprecated": false,
+      "disabled": false,
+      "token": "fd"
+    },
+    {
+      "id": "fzf",
+      "kind": "formula",
+      "version": "0.74.4",
+      "homepage": "https://junegunn.github.io/fzf/",
+      "license": "MIT",
+      "desc": "Command-line fuzzy finder written in Go",
+      "deprecated": false,
+      "disabled": false,
+      "token": "fzf"
+    },
+    {
+      "id": "bat",
+      "kind": "formula",
+      "version": "0.26.1",
+      "homepage": "https://github.com/sharkdp/bat",
+      "license": "Apache-2.0 OR MIT",
+      "desc": "Clone of cat(1) with syntax highlighting and Git integration",
+      "deprecated": false,
+      "disabled": false,
+      "token": "bat"
+    },
+    {
+      "id": "eza",
+      "kind": "formula",
+      "version": "0.23.5",
+      "homepage": "https://eza.rocks",
+      "license": "EUPL-1.2",
+      "desc": "Modern, maintained replacement for ls",
+      "deprecated": false,
+      "disabled": false,
+      "token": "eza"
+    },
+    {
+      "id": "zoxide",
+      "kind": "formula",
+      "version": "0.10.0",
+      "homepage": "https://github.com/ajeetdsouza/zoxide",
+      "license": "MIT",
+      "desc": "Shell extension to navigate your filesystem faster",
+      "deprecated": false,
+      "disabled": false,
+      "token": "zoxide"
+    },
+    {
+      "id": "starship",
+      "kind": "formula",
+      "version": "1.26.0",
+      "homepage": "https://starship.rs/",
+      "license": "ISC",
+      "desc": "Cross-shell prompt for astronauts",
+      "deprecated": false,
+      "disabled": false,
+      "token": "starship"
+    },
+    {
+      "id": "tmux",
+      "kind": "formula",
+      "version": "3.7c",
+      "homepage": "https://tmux.github.io/",
+      "license": "ISC",
+      "desc": "Terminal multiplexer",
+      "deprecated": false,
+      "disabled": false,
+      "token": "tmux"
+    },
+    {
+      "id": "btop",
+      "kind": "formula",
+      "version": "1.4.7",
+      "homepage": "https://github.com/aristocratos/btop",
+      "license": "Apache-2.0",
+      "desc": "Resource monitor. C++ version and continuation of bashtop and bpytop",
+      "deprecated": false,
+      "disabled": false,
+      "token": "btop"
+    },
+    {
+      "id": "tlrc",
+      "kind": "formula",
+      "version": "1.13.1",
+      "homepage": "https://tldr.sh/tlrc/",
+      "license": "MIT",
+      "desc": "Official tldr client written in Rust",
+      "deprecated": false,
+      "disabled": false,
+      "token": "tlrc"
+    },
+    {
+      "id": "colima",
+      "kind": "formula",
+      "version": "0.10.3",
+      "homepage": "https://colima.run",
+      "license": "MIT",
+      "desc": "Container runtimes on MacOS (and Linux) with minimal setup",
+      "deprecated": false,
+      "disabled": false,
+      "token": "colima"
+    },
+    {
+      "id": "docker",
+      "kind": "formula",
+      "version": "29.8.1",
+      "homepage": "https://www.docker.com/",
+      "license": "Apache-2.0",
+      "desc": "Pack, ship and run any application as a lightweight container",
+      "deprecated": false,
+      "disabled": false,
+      "token": "docker"
+    },
+    {
+      "id": "docker-compose",
+      "kind": "formula",
+      "version": "5.5.1",
+      "homepage": "https://docs.docker.com/compose/",
+      "license": "Apache-2.0",
+      "desc": "Isolated development environments using Docker",
+      "deprecated": false,
+      "disabled": false,
+      "token": "docker-compose"
+    },
+    {
+      "id": "kubernetes-cli",
+      "kind": "formula",
+      "version": "1.37.0",
+      "homepage": "https://kubernetes.io/docs/reference/kubectl/",
+      "license": "Apache-2.0",
+      "desc": "Kubernetes command-line interface",
+      "deprecated": false,
+      "disabled": false,
+      "token": "kubernetes-cli"
+    },
+    {
+      "id": "helm",
+      "kind": "formula",
+      "version": "4.3.0",
+      "homepage": "https://helm.sh/",
+      "license": "Apache-2.0",
+      "desc": "Kubernetes package manager",
+      "deprecated": false,
+      "disabled": false,
+      "token": "helm"
+    },
+    {
+      "id": "k9s",
+      "kind": "formula",
+      "version": "0.51.0",
+      "homepage": "https://k9scli.io/",
+      "license": "Apache-2.0",
+      "desc": "Kubernetes CLI To Manage Your Clusters In Style!",
+      "deprecated": false,
+      "disabled": false,
+      "token": "k9s"
+    },
+    {
+      "id": "opentofu",
+      "kind": "formula",
+      "version": "1.12.6",
+      "homepage": "https://opentofu.org/",
+      "license": "MPL-2.0",
+      "desc": "Drop-in replacement for Terraform. Infrastructure as Code Tool",
+      "deprecated": false,
+      "disabled": false,
+      "token": "opentofu"
+    },
+    {
+      "id": "neovim",
+      "kind": "formula",
+      "version": "0.12.5",
+      "homepage": "https://neovim.io/",
+      "license": "Apache-2.0",
+      "desc": "Ambitious Vim-fork focused on extensibility and agility",
+      "deprecated": false,
+      "disabled": false,
+      "token": "neovim"
+    },
+    {
+      "id": "restic",
+      "kind": "formula",
+      "version": "0.19.1",
+      "homepage": "https://restic.net/",
+      "license": "BSD-2-Clause",
+      "desc": "Fast, efficient and secure backup program",
+      "deprecated": false,
+      "disabled": false,
+      "token": "restic"
+    },
+    {
+      "id": "ollama",
+      "kind": "formula",
+      "version": "0.34.2",
+      "homepage": "https://ollama.com/",
+      "license": "MIT",
+      "desc": "Create, run, and share large language models (LLMs)",
+      "deprecated": false,
+      "disabled": false,
+      "token": "ollama"
+    },
+    {
+      "id": "firefox",
       "kind": "cask",
-      "id": "visual-studio-code",
-      "version": "1.138.0",
-      "homepage": "https://code.visualstudio.com/",
-      "desc": "Open-source code editor",
+      "version": "156.0",
+      "homepage": "https://www.mozilla.org/firefox/",
+      "license": null,
+      "desc": "Web browser",
       "deprecated": false,
       "disabled": false,
       "depends_on": {
         "macos": {}
       },
-      "token": "visual-studio-code"
+      "token": "firefox"
     },
     {
+      "id": "keepassxc",
       "kind": "cask",
-      "id": "cursor",
-      "version": "3.21.16,8ae78e8eee1e63479c7e0504b664bc0a80c6800f",
-      "homepage": "https://www.cursor.com/",
-      "desc": "Write, edit, and chat about your code with AI",
+      "version": "2.7.12",
+      "homepage": "https://keepassxc.org/",
+      "license": null,
+      "desc": "Password manager app",
       "deprecated": false,
       "disabled": false,
       "depends_on": {
@@ -47,26 +351,42 @@
           ]
         }
       },
-      "token": "cursor"
+      "token": "keepassxc"
     },
     {
+      "id": "rectangle",
       "kind": "cask",
-      "id": "zed",
-      "version": "1.20.2",
-      "homepage": "https://zed.dev/",
-      "desc": "Multiplayer code editor",
+      "version": "1.100",
+      "homepage": "https://rectangleapp.com/",
+      "license": null,
+      "desc": "Move and resize windows using keyboard shortcuts or snap areas",
       "deprecated": false,
       "disabled": false,
       "depends_on": {
         "macos": {}
       },
-      "token": "zed"
+      "token": "rectangle"
     },
     {
+      "id": "vscodium",
       "kind": "cask",
+      "version": "1.135.06055",
+      "homepage": "https://github.com/VSCodium/vscodium",
+      "license": null,
+      "desc": "Binary releases of VS Code without MS branding/telemetry/licensing",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {}
+      },
+      "token": "vscodium"
+    },
+    {
       "id": "ghostty",
+      "kind": "cask",
       "version": "1.3.1",
       "homepage": "https://ghostty.org/",
+      "license": null,
       "desc": "Terminal emulator that uses platform-native UI and GPU acceleration",
       "deprecated": false,
       "disabled": false,
@@ -80,10 +400,105 @@
       "token": "ghostty"
     },
     {
+      "id": "vlc",
       "kind": "cask",
+      "version": "3.0.23",
+      "homepage": "https://www.videolan.org/vlc/",
+      "license": null,
+      "desc": "Multimedia player",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {}
+      },
+      "token": "vlc"
+    },
+    {
+      "id": "iina",
+      "kind": "cask",
+      "version": "1.4.4",
+      "homepage": "https://iina.io/",
+      "license": null,
+      "desc": "Free and open-source media player",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "12"
+          ]
+        }
+      },
+      "token": "iina"
+    },
+    {
+      "id": "stats",
+      "kind": "cask",
+      "version": "3.0.16",
+      "homepage": "https://github.com/exelban/stats",
+      "license": null,
+      "desc": "System monitor for the menu bar",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "12"
+          ]
+        }
+      },
+      "token": "stats"
+    },
+    {
+      "id": "maccy",
+      "kind": "cask",
+      "version": "2.7.1",
+      "homepage": "https://maccy.app/",
+      "license": null,
+      "desc": "Clipboard manager",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "14"
+          ]
+        }
+      },
+      "token": "maccy"
+    },
+    {
+      "id": "localsend",
+      "kind": "cask",
+      "version": "1.18.2",
+      "homepage": "https://localsend.org/",
+      "license": null,
+      "desc": "Open-source cross-platform alternative to AirDrop",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {},
+      "token": "localsend"
+    },
+    {
+      "id": "zed",
+      "kind": "cask",
+      "version": "1.20.2",
+      "homepage": "https://zed.dev/",
+      "license": null,
+      "desc": "Multiplayer code editor",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {}
+      },
+      "token": "zed"
+    },
+    {
       "id": "iterm2",
+      "kind": "cask",
       "version": "3.7.2",
       "homepage": "https://iterm2.com/",
+      "license": null,
       "desc": "Terminal emulator as alternative to Apple's Terminal app",
       "deprecated": false,
       "disabled": false,
@@ -97,10 +512,115 @@
       "token": "iterm2"
     },
     {
+      "id": "joplin",
       "kind": "cask",
+      "version": "3.7.18",
+      "homepage": "https://joplinapp.org/",
+      "license": null,
+      "desc": "Note taking and to-do application with synchronisation capabilities",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "12"
+          ]
+        }
+      },
+      "token": "joplin"
+    },
+    {
+      "id": "aside",
+      "kind": "cask",
+      "version": "1.0.914.1",
+      "homepage": "https://aside.com/",
+      "license": null,
+      "desc": "Web browser with built-in AI assistant",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "13"
+          ]
+        }
+      },
+      "token": "aside"
+    },
+    {
+      "id": "cursor",
+      "kind": "cask",
+      "version": "3.21.16,8ae78e8eee1e63479c7e0504b664bc0a80c6800f",
+      "homepage": "https://www.cursor.com/",
+      "license": null,
+      "desc": "Write, edit, and chat about your code with AI",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "12"
+          ]
+        }
+      },
+      "token": "cursor"
+    },
+    {
+      "id": "claude",
+      "kind": "cask",
+      "version": "2.2553.1,c38127e27202ddc1c8c187102f7798a93b1b8ede",
+      "homepage": "https://claude.com/download",
+      "license": null,
+      "desc": "Anthropic's official Claude AI desktop app",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "13"
+          ]
+        }
+      },
+      "token": "claude"
+    },
+    {
+      "id": "visual-studio-code",
+      "kind": "cask",
+      "version": "1.138.0",
+      "homepage": "https://code.visualstudio.com/",
+      "license": null,
+      "desc": "Open-source code editor",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {}
+      },
+      "token": "visual-studio-code"
+    },
+    {
+      "id": "orbstack",
+      "kind": "cask",
+      "version": "2.2.3,20963",
+      "homepage": "https://orbstack.dev/",
+      "license": null,
+      "desc": "Replacement for Docker Desktop",
+      "deprecated": false,
+      "disabled": false,
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "14"
+          ]
+        }
+      },
+      "token": "orbstack"
+    },
+    {
       "id": "raycast",
+      "kind": "cask",
       "version": "2.4.1.0",
       "homepage": "https://raycast.com/",
+      "license": null,
       "desc": "Control your tools with a few keystrokes",
       "deprecated": false,
       "disabled": false,
@@ -116,74 +636,11 @@
       "token": "raycast"
     },
     {
-      "kind": "cask",
-      "id": "rectangle",
-      "version": "1.100",
-      "homepage": "https://rectangleapp.com/",
-      "desc": "Move and resize windows using keyboard shortcuts or snap areas",
-      "deprecated": false,
-      "disabled": false,
-      "depends_on": {
-        "macos": {}
-      },
-      "token": "rectangle"
-    },
-    {
-      "kind": "cask",
-      "id": "bitwarden",
-      "version": "2026.9.0",
-      "homepage": "https://bitwarden.com/",
-      "desc": "Desktop password and login vault",
-      "deprecated": false,
-      "disabled": false,
-      "depends_on": {
-        "macos": {
-          ">=": [
-            "12"
-          ]
-        }
-      },
-      "token": "bitwarden"
-    },
-    {
-      "kind": "cask",
-      "id": "orbstack",
-      "version": "2.2.3,20963",
-      "homepage": "https://orbstack.dev/",
-      "desc": "Replacement for Docker Desktop",
-      "deprecated": false,
-      "disabled": false,
-      "depends_on": {
-        "macos": {
-          ">=": [
-            "14"
-          ]
-        }
-      },
-      "token": "orbstack"
-    },
-    {
-      "kind": "cask",
-      "id": "claude",
-      "version": "2.2553.1,c38127e27202ddc1c8c187102f7798a93b1b8ede",
-      "homepage": "https://claude.com/download",
-      "desc": "Anthropic's official Claude AI desktop app",
-      "deprecated": false,
-      "disabled": false,
-      "depends_on": {
-        "macos": {
-          ">=": [
-            "13"
-          ]
-        }
-      },
-      "token": "claude"
-    },
-    {
-      "kind": "cask",
       "id": "obsidian",
+      "kind": "cask",
       "version": "1.13.7",
       "homepage": "https://obsidian.md/",
+      "license": null,
       "desc": "Knowledge base that works on top of a local folder of plain text Markdown files",
       "deprecated": false,
       "disabled": false,
@@ -197,114 +654,22 @@
       "token": "obsidian"
     },
     {
-      "kind": "formula",
-      "id": "git",
-      "version": "2.55.0",
-      "homepage": "https://git-scm.com",
-      "desc": "Distributed revision control system",
+      "id": "bitwarden",
+      "kind": "cask",
+      "version": "2026.9.0",
+      "homepage": "https://bitwarden.com/",
+      "license": null,
+      "desc": "Desktop password and login vault",
       "deprecated": false,
       "disabled": false,
-      "token": "git"
-    },
-    {
-      "kind": "formula",
-      "id": "gh",
-      "version": "2.101.0",
-      "homepage": "https://cli.github.com/",
-      "desc": "GitHub command-line tool",
-      "deprecated": false,
-      "disabled": false,
-      "token": "gh"
-    },
-    {
-      "kind": "formula",
-      "id": "jq",
-      "version": "1.8.2",
-      "homepage": "https://jqlang.github.io/jq/",
-      "desc": "Lightweight and flexible command-line JSON processor",
-      "deprecated": false,
-      "disabled": false,
-      "token": "jq"
-    },
-    {
-      "kind": "formula",
-      "id": "ripgrep",
-      "version": "15.2.0",
-      "homepage": "https://github.com/BurntSushi/ripgrep",
-      "desc": "Search tool like grep and The Silver Searcher",
-      "deprecated": false,
-      "disabled": false,
-      "token": "ripgrep"
-    },
-    {
-      "kind": "formula",
-      "id": "fzf",
-      "version": "0.74.4",
-      "homepage": "https://junegunn.github.io/fzf/",
-      "desc": "Command-line fuzzy finder written in Go",
-      "deprecated": false,
-      "disabled": false,
-      "token": "fzf"
-    },
-    {
-      "kind": "formula",
-      "id": "mise",
-      "version": "2026.9.12",
-      "homepage": "https://mise.jdx.dev/",
-      "desc": "Polyglot runtime manager (asdf rust clone)",
-      "deprecated": false,
-      "disabled": false,
-      "token": "mise"
-    },
-    {
-      "kind": "formula",
-      "id": "uv",
-      "version": "0.12.17",
-      "homepage": "https://docs.astral.sh/uv/",
-      "desc": "Extremely fast Python package installer and resolver, written in Rust",
-      "deprecated": false,
-      "disabled": false,
-      "token": "uv"
-    },
-    {
-      "kind": "formula",
-      "id": "kubernetes-cli",
-      "version": "1.37.0",
-      "homepage": "https://kubernetes.io/docs/reference/kubectl/",
-      "desc": "Kubernetes command-line interface",
-      "deprecated": false,
-      "disabled": false,
-      "token": "kubernetes-cli"
-    },
-    {
-      "kind": "formula",
-      "id": "helm",
-      "version": "4.3.0",
-      "homepage": "https://helm.sh/",
-      "desc": "Kubernetes package manager",
-      "deprecated": false,
-      "disabled": false,
-      "token": "helm"
-    },
-    {
-      "kind": "formula",
-      "id": "k9s",
-      "version": "0.51.0",
-      "homepage": "https://k9scli.io/",
-      "desc": "Kubernetes CLI To Manage Your Clusters In Style!",
-      "deprecated": false,
-      "disabled": false,
-      "token": "k9s"
-    },
-    {
-      "kind": "formula",
-      "id": "opentofu",
-      "version": "1.12.6",
-      "homepage": "https://opentofu.org/",
-      "desc": "Drop-in replacement for Terraform. Infrastructure as Code Tool",
-      "deprecated": false,
-      "disabled": false,
-      "token": "opentofu"
+      "depends_on": {
+        "macos": {
+          ">=": [
+            "12"
+          ]
+        }
+      },
+      "token": "bitwarden"
     }
   ]
 }

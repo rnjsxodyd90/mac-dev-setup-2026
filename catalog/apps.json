@@ -2,66 +2,47 @@
   "schemaVersion": 1,
   "edition": 2026,
   "profiles": {
-    "essentials": "Small foundation: CLI utilities, passwords and windows",
-    "developer": "Editor, terminal and runtime tooling",
-    "ai": "Opt-in AI browser, editor and assistant",
-    "cloud": "Containers, Kubernetes and infrastructure tools",
-    "extras": "Alternatives: review before installing overlapping tools"
+    "essentials": "Small open-source foundation: browser, passwords, windows and core CLI",
+    "developer": "Open-source editor, terminal and development workflow tools",
+    "terminal": "Optional open-source command-line productivity utilities",
+    "cloud": "Open-source containers, Kubernetes and infrastructure tools; no services started",
+    "apps": "Open-source everyday desktop utilities and media players; choose what you need",
+    "extras": "Open-source alternatives, notes and backup tools",
+    "ai": "Optional open-source local-model runtime; model weights have separate licenses",
+    "optional": "Explicit opt-in exceptions: proprietary, mixed-license or not verified open source"
   },
   "packages": [
     {
-      "id": "git",
-      "kind": "formula",
-      "profile": "essentials",
-      "name": "Git",
-      "why": "Version control",
-      "homepage": "https://git-scm.com",
-      "source": "https://formulae.brew.sh/api/formula/git.json"
-    },
-    {
-      "id": "gh",
-      "kind": "formula",
-      "profile": "essentials",
-      "name": "GitHub CLI",
-      "why": "Repositories, pull requests and issues from your terminal",
-      "homepage": "https://cli.github.com/",
-      "source": "https://formulae.brew.sh/api/formula/gh.json"
-    },
-    {
-      "id": "jq",
-      "kind": "formula",
-      "profile": "essentials",
-      "name": "jq",
-      "why": "Inspect and transform JSON",
-      "homepage": "https://jqlang.github.io/jq/",
-      "source": "https://formulae.brew.sh/api/formula/jq.json"
-    },
-    {
-      "id": "ripgrep",
-      "kind": "formula",
-      "profile": "essentials",
-      "name": "ripgrep",
-      "why": "Fast code search",
-      "homepage": "https://github.com/BurntSushi/ripgrep",
-      "source": "https://formulae.brew.sh/api/formula/ripgrep.json"
-    },
-    {
-      "id": "fzf",
-      "kind": "formula",
-      "profile": "essentials",
-      "name": "fzf",
-      "why": "Interactive fuzzy finding",
-      "homepage": "https://junegunn.github.io/fzf/",
-      "source": "https://formulae.brew.sh/api/formula/fzf.json"
-    },
-    {
-      "id": "bitwarden",
+      "id": "firefox",
       "kind": "cask",
       "profile": "essentials",
-      "name": "Bitwarden",
-      "why": "Password manager; account and setup required",
-      "homepage": "https://bitwarden.com/",
-      "source": "https://formulae.brew.sh/api/cask/bitwarden.json"
+      "name": "Firefox",
+      "why": "Everyday open-source browser",
+      "homepage": "https://www.mozilla.org/firefox/",
+      "source": "https://formulae.brew.sh/api/cask/firefox.json",
+      "license": {
+        "status": "open-source",
+        "label": "MPL-2.0 (primary)",
+        "evidence": "https://www.mozilla.org/en-US/foundation/licensing",
+        "note": "Firefox binaries are MPL-covered; some platform installer components have separate terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "keepassxc",
+      "kind": "cask",
+      "profile": "essentials",
+      "name": "KeePassXC",
+      "why": "Local encrypted password database; choose your own backup and sync",
+      "homepage": "https://keepassxc.org/",
+      "source": "https://formulae.brew.sh/api/cask/keepassxc.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-2.0-only OR GPL-3.0-only (core)",
+        "evidence": "https://github.com/keepassxreboot/keepassxc/blob/develop/COPYING",
+        "note": "Third-party dependencies and assets carry additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "rectangle",
@@ -70,7 +51,77 @@
       "name": "Rectangle",
       "why": "Keyboard-driven window positioning",
       "homepage": "https://rectangleapp.com/",
-      "source": "https://formulae.brew.sh/api/cask/rectangle.json"
+      "source": "https://formulae.brew.sh/api/cask/rectangle.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://github.com/rxhanson/Rectangle/blob/main/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "git",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "Git",
+      "why": "Version control",
+      "homepage": "https://git-scm.com",
+      "source": "https://formulae.brew.sh/api/formula/git.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause AND MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/git.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "gh",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "GitHub CLI",
+      "why": "Repositories, pull requests and issues from your terminal",
+      "homepage": "https://cli.github.com/",
+      "source": "https://formulae.brew.sh/api/formula/gh.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/gh.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "jq",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "jq",
+      "why": "Inspect and transform JSON",
+      "homepage": "https://jqlang.github.io/jq/",
+      "source": "https://formulae.brew.sh/api/formula/jq.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/jq.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "vscodium",
+      "kind": "cask",
+      "profile": "developer",
+      "name": "VSCodium",
+      "why": "Open-source editor distribution; check extension compatibility",
+      "homepage": "https://github.com/VSCodium/vscodium",
+      "source": "https://formulae.brew.sh/api/cask/vscodium.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://github.com/VSCodium/vscodium/blob/master/LICENSE",
+        "note": "VSCodium binaries differ from Microsoft VS Code product licensing and marketplace access.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "ghostty",
@@ -79,25 +130,29 @@
       "name": "Ghostty",
       "why": "Native GPU-accelerated terminal",
       "homepage": "https://ghostty.org/",
-      "source": "https://formulae.brew.sh/api/cask/ghostty.json"
-    },
-    {
-      "id": "visual-studio-code",
-      "kind": "cask",
-      "profile": "developer",
-      "name": "Visual Studio Code",
-      "why": "General-purpose editor",
-      "homepage": "https://code.visualstudio.com/",
-      "source": "https://formulae.brew.sh/api/cask/visual-studio-code.json"
+      "source": "https://formulae.brew.sh/api/cask/ghostty.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://github.com/ghostty-org/ghostty/blob/main/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "mise",
       "kind": "formula",
       "profile": "developer",
       "name": "mise",
-      "why": "Manage project language runtimes explicitly",
+      "why": "Project-specific language runtimes; no versions activated automatically",
       "homepage": "https://mise.jdx.dev/",
-      "source": "https://formulae.brew.sh/api/formula/mise.json"
+      "source": "https://formulae.brew.sh/api/formula/mise.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/mise.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "uv",
@@ -106,52 +161,302 @@
       "name": "uv",
       "why": "Python packages, projects and environments",
       "homepage": "https://docs.astral.sh/uv/",
-      "source": "https://formulae.brew.sh/api/formula/uv.json"
+      "source": "https://formulae.brew.sh/api/formula/uv.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0 OR MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/uv.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
-      "id": "aside",
-      "kind": "cask",
-      "profile": "ai",
-      "name": "Aside",
-      "why": "AI browser for tasks across websites; review account and data-access settings",
-      "homepage": "https://aside.com/",
-      "source": "https://formulae.brew.sh/api/cask/aside.json"
+      "id": "direnv",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "direnv",
+      "why": "Per-project environment variables; only trust reviewed envrc files",
+      "homepage": "https://direnv.net/",
+      "source": "https://formulae.brew.sh/api/formula/direnv.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/direnv.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
-      "id": "cursor",
-      "kind": "cask",
-      "profile": "ai",
-      "name": "Cursor",
-      "why": "AI-assisted code editor; alternative to VS Code",
-      "homepage": "https://www.cursor.com/",
-      "source": "https://formulae.brew.sh/api/cask/cursor.json"
+      "id": "shellcheck",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "ShellCheck",
+      "why": "Static checks for shell scripts",
+      "homepage": "https://www.shellcheck.net/",
+      "source": "https://formulae.brew.sh/api/formula/shellcheck.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-3.0-or-later",
+        "evidence": "https://formulae.brew.sh/api/formula/shellcheck.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
-      "id": "claude",
-      "kind": "cask",
-      "profile": "ai",
-      "name": "Claude",
-      "why": "Desktop AI assistant; account and plan terms apply",
-      "homepage": "https://claude.com/download",
-      "source": "https://formulae.brew.sh/api/cask/claude.json"
+      "id": "just",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "just",
+      "why": "Project command runner",
+      "homepage": "https://just.systems",
+      "source": "https://formulae.brew.sh/api/formula/just.json",
+      "license": {
+        "status": "open-source",
+        "label": "CC0-1.0",
+        "evidence": "https://formulae.brew.sh/api/formula/just.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
-      "id": "orbstack",
-      "kind": "cask",
+      "id": "httpie",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "HTTPie CLI",
+      "why": "Readable HTTP requests in the terminal",
+      "homepage": "https://httpie.io/",
+      "source": "https://formulae.brew.sh/api/formula/httpie.json",
+      "license": {
+        "status": "open-source",
+        "label": "BSD-3-Clause",
+        "evidence": "https://formulae.brew.sh/api/formula/httpie.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "ripgrep",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "ripgrep",
+      "why": "Fast code and text search",
+      "homepage": "https://github.com/BurntSushi/ripgrep",
+      "source": "https://formulae.brew.sh/api/formula/ripgrep.json",
+      "license": {
+        "status": "open-source",
+        "label": "Unlicense",
+        "evidence": "https://formulae.brew.sh/api/formula/ripgrep.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "fd",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "fd",
+      "why": "Friendly file finding",
+      "homepage": "https://github.com/sharkdp/fd",
+      "source": "https://formulae.brew.sh/api/formula/fd.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0 OR MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/fd.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "fzf",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "fzf",
+      "why": "Interactive fuzzy finding",
+      "homepage": "https://junegunn.github.io/fzf/",
+      "source": "https://formulae.brew.sh/api/formula/fzf.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/fzf.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "bat",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "bat",
+      "why": "Syntax-highlighted file previews",
+      "homepage": "https://github.com/sharkdp/bat",
+      "source": "https://formulae.brew.sh/api/formula/bat.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0 OR MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/bat.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "eza",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "eza",
+      "why": "Modern directory listings",
+      "homepage": "https://eza.rocks",
+      "source": "https://formulae.brew.sh/api/formula/eza.json",
+      "license": {
+        "status": "open-source",
+        "label": "EUPL-1.2",
+        "evidence": "https://formulae.brew.sh/api/formula/eza.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "zoxide",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "zoxide",
+      "why": "Jump to frequently used directories; shell activation is manual",
+      "homepage": "https://github.com/ajeetdsouza/zoxide",
+      "source": "https://formulae.brew.sh/api/formula/zoxide.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/zoxide.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "starship",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "Starship",
+      "why": "Cross-shell prompt; shell activation is manual",
+      "homepage": "https://starship.rs/",
+      "source": "https://formulae.brew.sh/api/formula/starship.json",
+      "license": {
+        "status": "open-source",
+        "label": "ISC",
+        "evidence": "https://formulae.brew.sh/api/formula/starship.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "tmux",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "tmux",
+      "why": "Persistent terminal sessions and panes",
+      "homepage": "https://tmux.github.io/",
+      "source": "https://formulae.brew.sh/api/formula/tmux.json",
+      "license": {
+        "status": "open-source",
+        "label": "ISC",
+        "evidence": "https://formulae.brew.sh/api/formula/tmux.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "btop",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "btop",
+      "why": "Terminal system-resource monitor",
+      "homepage": "https://github.com/aristocratos/btop",
+      "source": "https://formulae.brew.sh/api/formula/btop.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/btop.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "tlrc",
+      "kind": "formula",
+      "profile": "terminal",
+      "name": "tlrc",
+      "why": "Official Rust tldr client for concise command examples",
+      "homepage": "https://tldr.sh/tlrc/",
+      "source": "https://formulae.brew.sh/api/formula/tlrc.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/tlrc.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "colima",
+      "kind": "formula",
       "profile": "cloud",
-      "name": "OrbStack",
-      "why": "Local containers and Linux machines; check commercial licensing",
-      "homepage": "https://orbstack.dev/",
-      "source": "https://formulae.brew.sh/api/cask/orbstack.json"
+      "name": "Colima",
+      "why": "Local container VM/runtime; not started automatically",
+      "homepage": "https://colima.run",
+      "source": "https://formulae.brew.sh/api/formula/colima.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/colima.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "docker",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "Docker CLI",
+      "why": "Open-source CLI only, not Docker Desktop",
+      "homepage": "https://www.docker.com/",
+      "source": "https://formulae.brew.sh/api/formula/docker.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/docker.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "docker-compose",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "Docker Compose",
+      "why": "Compose CLI plugin; discovery may need manual configuration",
+      "homepage": "https://docs.docker.com/compose/",
+      "source": "https://formulae.brew.sh/api/formula/docker-compose.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/docker-compose.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "kubernetes-cli",
       "kind": "formula",
       "profile": "cloud",
       "name": "kubectl",
-      "why": "Operate Kubernetes clusters; credentials are not configured",
+      "why": "Kubernetes CLI; cluster access is not configured",
       "homepage": "https://kubernetes.io/docs/reference/kubectl/",
-      "source": "https://formulae.brew.sh/api/formula/kubernetes-cli.json"
+      "source": "https://formulae.brew.sh/api/formula/kubernetes-cli.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/kubernetes-cli.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "helm",
@@ -160,7 +465,14 @@
       "name": "Helm",
       "why": "Kubernetes package management",
       "homepage": "https://helm.sh/",
-      "source": "https://formulae.brew.sh/api/formula/helm.json"
+      "source": "https://formulae.brew.sh/api/formula/helm.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/helm.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "k9s",
@@ -169,52 +481,330 @@
       "name": "K9s",
       "why": "Terminal interface for Kubernetes",
       "homepage": "https://k9scli.io/",
-      "source": "https://formulae.brew.sh/api/formula/k9s.json"
+      "source": "https://formulae.brew.sh/api/formula/k9s.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/k9s.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "opentofu",
       "kind": "formula",
       "profile": "cloud",
       "name": "OpenTofu",
-      "why": "Infrastructure as code",
+      "why": "Open-source infrastructure as code",
       "homepage": "https://opentofu.org/",
-      "source": "https://formulae.brew.sh/api/formula/opentofu.json"
+      "source": "https://formulae.brew.sh/api/formula/opentofu.json",
+      "license": {
+        "status": "open-source",
+        "label": "MPL-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/opentofu.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "vlc",
+      "kind": "cask",
+      "profile": "apps",
+      "name": "VLC",
+      "why": "General-purpose media player; alternative to IINA",
+      "homepage": "https://www.videolan.org/vlc/",
+      "source": "https://formulae.brew.sh/api/cask/vlc.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-2.0-or-later (player)",
+        "evidence": "https://github.com/videolan/vlc/blob/master/README.md",
+        "note": "Some builds effectively require GPLv3 because of dependencies; libVLC differs.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "iina",
+      "kind": "cask",
+      "profile": "apps",
+      "name": "IINA",
+      "why": "Mac-native media player; alternative to VLC",
+      "homepage": "https://iina.io/",
+      "source": "https://formulae.brew.sh/api/cask/iina.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-3.0-only",
+        "evidence": "https://github.com/iina/iina/blob/develop/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "stats",
+      "kind": "cask",
+      "profile": "apps",
+      "name": "Stats",
+      "why": "Menu-bar system resource information",
+      "homepage": "https://github.com/exelban/stats",
+      "source": "https://formulae.brew.sh/api/cask/stats.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://github.com/exelban/stats/blob/master/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "maccy",
+      "kind": "cask",
+      "profile": "apps",
+      "name": "Maccy",
+      "why": "Clipboard history; configure sensitive-data exclusions",
+      "homepage": "https://maccy.app/",
+      "source": "https://formulae.brew.sh/api/cask/maccy.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://github.com/p0deje/Maccy/blob/master/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "localsend",
+      "kind": "cask",
+      "profile": "apps",
+      "name": "LocalSend",
+      "why": "Local-network file transfers across devices",
+      "homepage": "https://localsend.org/",
+      "source": "https://formulae.brew.sh/api/cask/localsend.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://github.com/localsend/localsend/blob/main/LICENSE",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "zed",
       "kind": "cask",
       "profile": "extras",
       "name": "Zed",
-      "why": "Alternative code editor",
+      "why": "Alternative editor; hosted AI services are separate",
       "homepage": "https://zed.dev/",
-      "source": "https://formulae.brew.sh/api/cask/zed.json"
+      "source": "https://formulae.brew.sh/api/cask/zed.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-3.0-or-later; Apache-2.0 where marked",
+        "evidence": "https://github.com/zed-industries/zed/blob/main/README.md",
+        "note": "Hosted AI and collaboration services have separate terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "iterm2",
       "kind": "cask",
       "profile": "extras",
       "name": "iTerm2",
-      "why": "Alternative terminal",
+      "why": "Alternative terminal to Ghostty",
       "homepage": "https://iterm2.com/",
-      "source": "https://formulae.brew.sh/api/cask/iterm2.json"
+      "source": "https://formulae.brew.sh/api/cask/iterm2.json",
+      "license": {
+        "status": "open-source",
+        "label": "GPL-3.0-or-later (combined distribution)",
+        "evidence": "https://github.com/gnachman/iTerm2/blob/master/COPYING",
+        "note": "Core notice is GPLv2-or-later; Apache-2.0 dependencies make the combined app effectively GPLv3.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "neovim",
+      "kind": "formula",
+      "profile": "extras",
+      "name": "Neovim",
+      "why": "Terminal-based editor",
+      "homepage": "https://neovim.io/",
+      "source": "https://formulae.brew.sh/api/formula/neovim.json",
+      "license": {
+        "status": "open-source",
+        "label": "Apache-2.0",
+        "evidence": "https://formulae.brew.sh/api/formula/neovim.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "joplin",
+      "kind": "cask",
+      "profile": "extras",
+      "name": "Joplin",
+      "why": "Notes app with optional sync services",
+      "homepage": "https://joplinapp.org/",
+      "source": "https://formulae.brew.sh/api/cask/joplin.json",
+      "license": {
+        "status": "open-source",
+        "label": "AGPL-3.0-or-later (default)",
+        "evidence": "https://github.com/laurent22/joplin/blob/dev/LICENSE",
+        "note": "Directory-specific licenses can override; branding and hosted services are separate.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "restic",
+      "kind": "formula",
+      "profile": "extras",
+      "name": "restic",
+      "why": "Encrypted backup CLI; destination and recovery setup are manual",
+      "homepage": "https://restic.net/",
+      "source": "https://formulae.brew.sh/api/formula/restic.json",
+      "license": {
+        "status": "open-source",
+        "label": "BSD-2-Clause",
+        "evidence": "https://formulae.brew.sh/api/formula/restic.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "ollama",
+      "kind": "formula",
+      "profile": "ai",
+      "name": "Ollama",
+      "why": "Open-source model runtime; no models pulled or services started",
+      "homepage": "https://ollama.com/",
+      "source": "https://formulae.brew.sh/api/formula/ollama.json",
+      "license": {
+        "status": "open-source",
+        "label": "MIT",
+        "evidence": "https://formulae.brew.sh/api/formula/ollama.json",
+        "note": "Homebrew license metadata; bundled dependencies can have additional licenses.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "aside",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "Aside",
+      "why": "Optional AI browser; review account, permission and processing terms",
+      "homepage": "https://aside.com/",
+      "source": "https://formulae.brew.sh/api/cask/aside.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://aside.com/",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "cursor",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "Cursor",
+      "why": "Optional AI editor with vendor-controlled service terms",
+      "homepage": "https://www.cursor.com/",
+      "source": "https://formulae.brew.sh/api/cask/cursor.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://www.cursor.com/",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "claude",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "Claude",
+      "why": "Optional desktop AI assistant; account and plan terms apply",
+      "homepage": "https://claude.com/download",
+      "source": "https://formulae.brew.sh/api/cask/claude.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://claude.com/download",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "visual-studio-code",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "Microsoft Visual Studio Code",
+      "why": "Microsoft binary distribution; VSCodium is the preferred open-source path",
+      "homepage": "https://code.visualstudio.com/",
+      "source": "https://formulae.brew.sh/api/cask/visual-studio-code.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Microsoft product license",
+        "evidence": "https://code.visualstudio.com/docs/supporting/faq",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "orbstack",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "OrbStack",
+      "why": "Optional container app; Colima is the open-source path",
+      "homepage": "https://orbstack.dev/",
+      "source": "https://formulae.brew.sh/api/cask/orbstack.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://orbstack.dev/",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "raycast",
       "kind": "cask",
-      "profile": "extras",
+      "profile": "optional",
       "name": "Raycast",
-      "why": "Launcher and productivity tools; check current architecture support",
+      "why": "Optional launcher; verify current ARM64 support and plan terms",
       "homepage": "https://raycast.com/",
-      "source": "https://formulae.brew.sh/api/cask/raycast.json"
+      "source": "https://formulae.brew.sh/api/cask/raycast.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://raycast.com/",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     },
     {
       "id": "obsidian",
       "kind": "cask",
-      "profile": "extras",
+      "profile": "optional",
       "name": "Obsidian",
-      "why": "Local Markdown notes; optional services have separate terms",
+      "why": "Optional notes app; Joplin is the open-source path",
       "homepage": "https://obsidian.md/",
-      "source": "https://formulae.brew.sh/api/cask/obsidian.json"
+      "source": "https://formulae.brew.sh/api/cask/obsidian.json",
+      "license": {
+        "status": "not-verified-open-source",
+        "label": "Vendor terms; not verified open source",
+        "evidence": "https://obsidian.md/",
+        "note": "Not accepted as an open-source recommendation; check current vendor terms.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
+    },
+    {
+      "id": "bitwarden",
+      "kind": "cask",
+      "profile": "optional",
+      "name": "Bitwarden",
+      "why": "Optional password manager with mixed-license source; existing vaults are unchanged",
+      "homepage": "https://bitwarden.com/",
+      "source": "https://formulae.brew.sh/api/cask/bitwarden.json",
+      "license": {
+        "status": "mixed",
+        "label": "GPL-3.0 plus Bitwarden License modules",
+        "evidence": "https://github.com/bitwarden/clients/blob/main/LICENSE.txt",
+        "note": "Bitwarden-specific modules are not blanket open source; see LICENSE_BITWARDEN.txt.",
+        "checkedAt": "2026-09-20T17:34:31.694Z"
+      }
     }
   ]
 }

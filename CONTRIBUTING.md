@@ -1,15 +1,15 @@
 # Contributing
 
-Keep this project small, current and safe.
+Keep this project useful, current and open-source first.
 
-1. Explain the user problem and why an existing entry is insufficient.
-2. Prefer official Homebrew formulae/casks; give an official vendor homepage.
-3. Check macOS/architecture, licensing and account requirements.
-4. Add entries to catalog/apps.json, not directly to generated Brewfiles.
-5. For a new package, add a verified metadata record with source evidence to catalog/verified.json; never invent versions. Then run npm run refresh and review all changes. For an existing package, npm run refresh is sufficient.
-6. Run npm run generate, npm run check and npm test.
-7. Include what was actually tested. Distinguish API checks, mocked tests and real installations.
+1. Explain the everyday need, who benefits and overlap with existing entries.
+2. Prefer maintained open-source tools and official Homebrew formulae/casks. Include the upstream project and license evidence, not only a download link.
+3. Distinguish the installed binary from its upstream source and optional commercial services. Do not equate free-of-charge, source-available and open source.
+4. Put proprietary, mixed-license or unverified-open-source apps in `optional` only. Core profiles must contain entries classified `open-source` with reviewed license evidence.
+5. Edit catalog/apps.json, not the generated Brewfiles. For a new package, run npm run refresh to validate all live Homebrew records before generating the new catalog. Cask-license evidence requires human review; Homebrew casks do not supply license metadata.
+6. Run npm run generate, npm run check and npm test. Review generated lists and compatibility notes.
+7. Describe actual tests. Separate metadata checks, mocked tests, license evidence and clean-Mac installation results.
 
-Do not add destructive defaults, credential collection, remote-script piping, unreviewed taps, affiliate links or unsupported claims such as 'always latest'. Do not copy another repository's code without following its license and preserving attribution.
+Do not add destructive defaults, credential collection, remote-script piping, unreviewed taps, affiliate links or unsupported 'always latest' claims. Preserve attribution and licenses when reusing others' code. Never commit personal configuration or secrets.
 
-Suggested tools belong in an appropriate profile. Overlapping editors, terminals and browsers should be clearly optional.
+Runtime/service starts, shell modifications, model downloads and paid accounts must remain explicit manual steps. Prefer small independent profiles over an install-everything option.

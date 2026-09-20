@@ -8,7 +8,8 @@ Usage: setup.sh [options]
 Safely preview or apply one or more static Homebrew bundle profiles.
 
 Options:
-  --profile NAME  Select essentials, developer, ai, cloud, or extras (repeatable).
+  --profile NAME  Select essentials, developer, terminal, cloud, apps, ai, extras,
+                  or optional (repeatable).
                   essentials is selected when no profile is given.
   --apply         Run Homebrew after an explicit interactive confirmation.
   --yes           Skip confirmation only when used together with --apply.
@@ -20,9 +21,9 @@ EOT
 die() { printf '%s\n' "Error: $*" >&2; exit 2; }
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P) || exit 1
 PROFILE_DIR="$SCRIPT_DIR/profiles"
-APPLY=0 YES=0 UPGRADE=0 SELECTED=""
+APPLY=0 YES=0 UPGRADE=0 DRY_RUN=0 SELECTED=""
 add_profile() {
-  case "$1" in essentials|developer|ai|cloud|extras) ;; *) die "unknown profile: $1" ;; esac
+  case "$1" in essentials|developer|terminal|cloud|apps|ai|extras|optional) ;; *) die "unknown profile: $1" ;; esac
   case " $SELECTED " in *" $1 "*) ;; *) SELECTED="${SELECTED}${SELECTED:+ }$1" ;; esac
 }
 while [ "$#" -gt 0 ]; do
@@ -31,11 +32,12 @@ while [ "$#" -gt 0 ]; do
     --apply) APPLY=1; shift ;;
     --yes) YES=1; shift ;;
     --upgrade) UPGRADE=1; shift ;;
-    --dry-run) APPLY=0; shift ;;
+    --dry-run) DRY_RUN=1; shift ;;
     --help|-h) usage; exit 0 ;;
     *) die "unknown option: $1" ;;
   esac
 done
+[ "$DRY_RUN" -eq 0 ] || APPLY=0
 [ -n "$SELECTED" ] || SELECTED="essentials"
 printf '%s\n' 'Selected profiles:'
 for profile in $SELECTED; do
@@ -50,7 +52,7 @@ for profile in $SELECTED; do
   sed -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' "$brewfile" | sed 's/^/    /'
 done
 case " $SELECTED " in
-  *" ai "*|*" cloud "*) printf '%s\n' 'Warning: selected profiles include tools that may require paid services or cloud accounts.' >&2 ;;
+  *" optional "*) printf '%s\n' 'Warning: optional contains proprietary, mixed-license or unverified-open-source apps; account and plan terms may apply.' >&2 ;;
 esac
 printf '%s\n' 'Warning: package availability depends on your macOS version and architecture; Homebrew determines compatibility.' >&2
 if [ "$UPGRADE" -eq 1 ]; then BUNDLE_PREVIEW='bundle install --file=<temporary combined Brewfile>'; else BUNDLE_PREVIEW='bundle install --file=<temporary combined Brewfile> --no-upgrade'; fi
