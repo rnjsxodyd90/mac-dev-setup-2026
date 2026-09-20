@@ -55,6 +55,23 @@ bash setup.sh --profile essentials --profile developer --profile terminal --appl
 
 No Ansible, Node or Python is needed to run `setup.sh`. Homebrew is needed only to apply a plan. Node.js 22+ is for maintainers and tests.
 
+## Optional Ansible workflow
+
+Prefer a repeatable YAML configuration? Use the [Ansible playbook](docs/ansible.md). It runs the same guarded installer locally: preview by default, explicit apply, and no changes on an already-complete rerun. No Terraform state, remote hosts or duplicate package lists are needed.
+
+After installing the optional controller dependency described in the guide:
+
+```bash
+# Preview the default essentials profile.
+.venv-ansible/bin/ansible-playbook -i localhost, ansible/playbook.yml --check
+
+# Explicitly install missing essentials; no upgrades or app adoption.
+.venv-ansible/bin/ansible-playbook -i localhost, ansible/playbook.yml \
+  -e '{"mac_setup_apply":true}'
+```
+
+The Bash workflow stays dependency-light. Ansible adds optional YAML orchestration, not automatic machine-wide configuration.
+
 ## Safe to rerun
 
 **Run the same command again whenever you add tools or move to a partially configured Mac.** The default apply mode installs missing entries rather than reinstalling the whole selection.
@@ -128,7 +145,7 @@ Brewfiles are executable Ruby. Review any file before running it. Keep personal 
 ## Safe by default
 
 - Preview mode makes no network calls and never invokes Homebrew.
-- Apply requires confirmation unless `--yes` is explicitly supplied.
+- The Bash CLI requires apply confirmation unless `--yes` is explicitly supplied. Ansible requires `mac_setup_apply: true`, which explicitly supplies `--apply --yes`.
 - Homebrew metadata is refreshed only when installs or explicit upgrade checks are needed. Already-installed packages are not upgraded unless `--upgrade` is selected. Required dependencies can still be installed or updated by Homebrew.
 - No dotfile replacement, uninstall/cleanup operations, background service starts, model downloads or macOS preference changes.
 - No account sign-ins, credentials, purchases or permissions are configured for you.

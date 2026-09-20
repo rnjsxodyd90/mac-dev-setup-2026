@@ -1,0 +1,3 @@
+# Controller dependency only. No third-party Ansible collections required.
+# Review and retest updates; this pin is not a claim of perpetual freshness.
+ansible-core==2.21.4

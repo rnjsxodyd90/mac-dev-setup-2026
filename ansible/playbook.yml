@@ -1,0 +1,68 @@
+---
+- name: Review-first Mac setup
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+    mac_setup_profiles: [essentials]
+    mac_setup_apply: false
+    mac_setup_appdir: ""
+  tasks:
+    - name: Validate typed options before invoking the installer
+      ansible.builtin.assert:
+        that:
+          - mac_setup_apply is boolean
+          - mac_setup_profiles is sequence
+          - mac_setup_profiles is not string
+          - mac_setup_profiles is not mapping
+          - mac_setup_profiles | length > 0
+          - mac_setup_appdir is string
+          - mac_setup_upgrade is not defined
+        fail_msg: >-
+          Use a nonempty profile list, a YAML/JSON boolean for mac_setup_apply,
+          and a string for mac_setup_appdir. Upgrades are deliberately not exposed
+          here; use setup.sh --apply --upgrade after reviewing its selection.
+
+    - name: Validate every selected profile
+      ansible.builtin.assert:
+        that:
+          - item is string
+          - item in ['essentials', 'developer', 'terminal', 'cloud', 'apps', 'extras', 'ai', 'optional']
+        fail_msg: "Unknown profile; see the README for supported profile names."
+      loop: "{{ mac_setup_profiles }}"
+
+    - name: Start the argument list without shell interpolation
+      ansible.builtin.set_fact:
+        _mac_setup_argv: ["/bin/bash", "{{ playbook_dir }}/../setup.sh"]
+
+    - name: Add selected profiles
+      ansible.builtin.set_fact:
+        _mac_setup_argv: "{{ _mac_setup_argv + ['--profile', item] }}"
+      loop: "{{ mac_setup_profiles | unique }}"
+
+    - name: Add an explicitly configured app directory
+      ansible.builtin.set_fact:
+        _mac_setup_argv: "{{ _mac_setup_argv + ['--appdir', mac_setup_appdir] }}"
+      when: mac_setup_appdir | length > 0
+
+    # check_mode: false is intentional: run the *installer's* read-only preview
+    # instead of having Ansible skip the command task. --check always wins.
+    - name: Run the guarded installer (preview unless explicitly applying)
+      ansible.builtin.command:
+        argv: >-
+          {{ _mac_setup_argv +
+             (['--apply', '--yes'] if (mac_setup_apply and not ansible_check_mode)
+              else ['--dry-run']) }}
+        expand_argument_vars: false
+      check_mode: false
+      register: _mac_setup_result
+      changed_when: >-
+        mac_setup_apply and not ansible_check_mode and
+        (_mac_setup_result.stdout is search('(?m)^  installed: [1-9][0-9]*$'))
+      failed_when: _mac_setup_result.rc != 0
+
+    - name: Show the installer report
+      ansible.builtin.debug:
+        msg: "{{ _mac_setup_result.stdout_lines + _mac_setup_result.stderr_lines }}"

@@ -1,0 +1,13 @@
+---
+# Copy to ansible/config.local.yml (gitignored), then review your selection.
+mac_setup_profiles:
+  - essentials
+  - developer
+  - terminal
+
+# Keep previews as the default. Apply is an explicit command-line opt-in.
+mac_setup_apply: false
+
+# Empty uses Homebrew's default. Otherwise use a literal absolute path.
+# No shell expansion: ~/Applications and $HOME/Applications are not expanded.
+mac_setup_appdir: ""

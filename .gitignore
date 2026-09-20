@@ -5,3 +5,7 @@ catalog/*.tmp
 .env
 .env.*
 *.log
+
+# Optional local Ansible controller/configuration
+.venv-ansible/
+ansible/*.local.yml

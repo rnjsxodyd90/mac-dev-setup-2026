@@ -42,3 +42,7 @@ Only the `optional` profile may contain entries not classified `open-source`. Th
 ## Rerun verification
 
 Stateful installer fixtures cover a partially configured Mac, a second apply, manually installed apps, invalid app folders, explicit upgrade checks and recovery from a partial failure. They must never invoke real Homebrew mutation commands. The committed app-bundle TSV is generated from Homebrew cask artifacts and validated alongside the Brewfiles. A supported cask needs one unambiguous safe `.app` basename. Changes to artifact names need a metadata refresh and human review. Do not claim app authenticity, app health or clean-Mac verification from these checks.
+
+## Ansible controller maintenance
+
+Review `ansible/requirements.txt` separately from the Homebrew metadata snapshot. The controller is optional for users, but required in hosted CI. Update its pin deliberately, run syntax checks and `npm run test:ansible` with that controller, and verify both macOS and Linux before publishing. Integration tests use real Ansible with mocked Homebrew, not real app installs. See [the Ansible guide](ansible.md) for preview/check-mode and change-reporting boundaries.

@@ -16,7 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r ansible/requirements.txt
+      - run: ansible-playbook -i localhost, ansible/playbook.yml --syntax-check
       - run: bash -n setup.sh
       - run: npm run check
       - run: npm test
+        env:
+          REQUIRE_ANSIBLE_TESTS: "1"
       - run: bash setup.sh --profile essentials --profile developer --profile terminal --profile cloud --profile apps
