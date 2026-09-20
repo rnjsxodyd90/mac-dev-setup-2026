@@ -39,4 +39,4 @@ Aside, Cursor, Claude, VS Code, OrbStack, Raycast, Obsidian and Bitwarden are se
 
 ## If a package fails
 
-Read the Homebrew error. Check OS/architecture requirements, disk space, existing-app conflicts and vendor availability. Never disable Gatekeeper or System Integrity Protection to force an install. Re-run the reviewed selection after fixing the issue. Earlier successful installs are not rolled back or forcibly removed.
+Read the Homebrew error. Check OS/architecture requirements, disk space, existing-app conflicts and vendor availability. Never disable Gatekeeper or System Integrity Protection to force an install. Re-run the same reviewed selection after fixing the issue. Already-satisfied entries are skipped and only missing entries are installed. Earlier successful installs are not rolled back or forcibly removed. Invalid/incomplete app folders at a known target path are reported as conflicts and left untouched; inspect and resolve them yourself before retrying. Renamed apps or apps outside the supported search locations require individual review.

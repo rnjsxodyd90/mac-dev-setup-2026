@@ -55,6 +55,35 @@ bash setup.sh --profile essentials --profile developer --profile terminal --appl
 
 No Ansible, Node or Python is needed to run `setup.sh`. Homebrew is needed only to apply a plan. Node.js 22+ is for maintainers and tests.
 
+## Safe to rerun
+
+**Run the same command again whenever you add tools or move to a partially configured Mac.** The default apply mode installs missing entries rather than reinstalling the whole selection.
+
+```bash
+bash setup.sh --profile essentials --profile developer --profile terminal --apply
+```
+
+- **Already tracked by Homebrew:** skip it by exact package name.
+- **Manually installed GUI app:** check the expected app name in `/Applications`, `~/Applications`, and an explicitly selected `--appdir`. A structurally valid existing app is left alone, never adopted or overwritten.
+- **Missing package:** install it and confirm it appears in Homebrew's installed inventory.
+- **Everything already present:** do not run a metadata update, install or upgrade.
+- **One package fails:** continue independent entries, print a failure summary, and exit nonzero. Rerun the same command to retry missing entries; successful earlier installs stay installed.
+- **Want newer versions too?** Add `--upgrade` for selected Homebrew-managed entries only. Externally installed apps are still left alone. The summary reports completed upgrade checks, not a claim that every checked package changed version.
+
+```bash
+# Optional custom app location; paths with spaces are supported.
+bash setup.sh --profile developer --appdir "$HOME/Applications" --apply
+
+# Explicitly allow Homebrew upgrades for this selection.
+bash setup.sh --profile developer --apply --upgrade
+```
+
+App detection checks the known bundle name, readable app metadata and executable presence without running the app. It is **not** an authenticity check or a health/version test. Incomplete/conflicting app folders are reported as conflicts, not silently accepted or replaced. Renamed apps or other locations are not detected automatically. Homebrew receipts count as installed; corrupted managed installs need manual repair. CLI tools installed outside Homebrew are not treated as managed formulae just because a command exists on PATH.
+
+Inherited `HOMEBREW_CASK_OPTS` and `HOMEBREW_FORCE_API_AUTO_UPDATE` are cleared for installer commands, so environment flags cannot silently request force/adopt or change app locations. Use `--appdir` explicitly.
+
+Preview mode remains fully read-only and does not invoke Homebrew. It lists your requested selection; actual installed-state checks happen after apply confirmation. App mappings come from verified Homebrew cask artifacts in `catalog/app-bundles.tsv`. Custom Ruby in profile Brewfiles is rejected by the setup wrapper; use Homebrew directly for your own advanced Brewfiles.
+
 ## Choose your profiles
 
 Profiles are independent and repeatable. **Nothing automatically includes `optional`.**
@@ -100,10 +129,10 @@ Brewfiles are executable Ruby. Review any file before running it. Keep personal 
 
 - Preview mode makes no network calls and never invokes Homebrew.
 - Apply requires confirmation unless `--yes` is explicitly supplied.
-- Homebrew metadata is refreshed, but already-installed packages are not upgraded unless `--upgrade` is selected. Required dependencies can still be installed or updated by Homebrew.
+- Homebrew metadata is refreshed only when installs or explicit upgrade checks are needed. Already-installed packages are not upgraded unless `--upgrade` is selected. Required dependencies can still be installed or updated by Homebrew.
 - No dotfile replacement, uninstall/cleanup operations, background service starts, model downloads or macOS preference changes.
 - No account sign-ins, credentials, purchases or permissions are configured for you.
-- Existing manually installed apps may need individual attention; the script does not force replacements.
+- Existing apps are detected conservatively and left untouched. Conflicts are reported rather than forcibly replaced.
 
 ## Open source means more than free
 
@@ -121,9 +150,10 @@ The catalog records a license classification and evidence link for every entry. 
 
 - `catalog/apps.json`: profiles, purpose, license classification and evidence links.
 - `catalog/verified.json`: last successful committed Homebrew metadata snapshot.
+- `catalog/app-bundles.tsv`: generated app names for conservative external-app detection.
 - `profiles/*.Brewfile` and `docs/apps.md`: generated lists, observed versions and dates.
 - CI validates the catalog and enforces that only `optional` can contain non-open-source entries. Installer tests use mocks, not real installs.
-- Weekly freshness checks report version, compatibility and formula-license changes and open/update one review issue. They do not silently change package choices.
+- Weekly freshness checks report version, compatibility, app-bundle-name and formula-license changes and open/update one review issue. They do not silently change package choices.
 
 Failed checks preserve the last valid snapshot. A green metadata check is **not** clean-Mac installation testing, upstream license revalidation, a security audit or verification of every vendor release. GitHub schedules can be delayed or disabled; inspect the latest run.
 

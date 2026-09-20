@@ -1,6 +1,6 @@
 {
   "name": "mac-dev-setup-2026",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Open-source-first Mac essentials and developer tools for 2026, with review-first Homebrew profiles and freshness checks.",

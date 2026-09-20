@@ -27,7 +27,7 @@ const snapshot = JSON.parse(readFileSync(new URL('./catalog/verified.json', impo
 globalThis.fetch = async url => {
   const id = url.split('/').pop().replace('.json','');
   const p = snapshot.packages.find(p => p.id === id);
-  return { ok: true, json: async () => ({...p, name:p.token, versions:{stable:p.version}}) };
+  return { ok: true, json: async () => ({...p, name:p.token, versions:{stable:p.version}, artifacts: (p.appBundles ?? []).map(name => ({ app: [name] }))}) };
 };
 `;
 
@@ -122,5 +122,31 @@ test('formula license drift triggers review without replacing snapshot', async t
   const result = run(dir, 'audit', preload);
   assert.equal(result.status, 2, result.stderr);
   assert.match(await readFile(path.join(dir, 'reports/freshness.md'), 'utf8'), /license changed/);
+  assert.equal(await readFile(path.join(dir, 'catalog/verified.json'), 'utf8'), before);
+});
+
+test('generated app mapping drift is rejected', async t => {
+  const dir = await fixture(t);
+  await writeFile(path.join(dir, 'catalog/app-bundles.tsv'), 'firefox\tWrong.app\n');
+  const result = run(dir, 'check');
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Generated file is stale: catalog\/app-bundles.tsv/);
+});
+test('app-bundle names cannot escape the configured Applications directory', async t => {
+  const dir = await fixture(t);
+  const snapshot = JSON.parse(await readFile(path.join(dir, 'catalog/verified.json')));
+  snapshot.packages.find(p => p.id === 'firefox').appBundles = ['../../Elsewhere.app'];
+  await writeFile(path.join(dir, 'catalog/verified.json'), JSON.stringify(snapshot));
+  const result = run(dir, 'generate');
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /safe app-bundle basename/);
+});
+test('cask artifact changes trigger freshness review', async t => {
+  const dir = await fixture(t);
+  const before = await readFile(path.join(dir, 'catalog/verified.json'), 'utf8');
+  const preload = await mockFetch(dir, successMock + '\nconst original = fetch; globalThis.fetch = async url => { const r = await original(url); const p = await r.json(); if (p.id === "firefox") p.artifacts = [{app:["New Firefox.app"]}]; return {ok:true,json:async()=>p}; };');
+  const result = run(dir, 'audit', preload);
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(await readFile(path.join(dir, 'reports/freshness.md'), 'utf8'), /appBundles changed/);
   assert.equal(await readFile(path.join(dir, 'catalog/verified.json'), 'utf8'), before);
 });

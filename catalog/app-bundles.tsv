@@ -1,0 +1,23 @@
+# Generated Homebrew cask app-bundle names. Do not edit; run npm run refresh.
+# cask-token<TAB>app-bundle-basename
+firefox	Firefox.app
+keepassxc	KeePassXC.app
+rectangle	Rectangle.app
+vscodium	VSCodium.app
+ghostty	Ghostty.app
+vlc	VLC.app
+iina	IINA.app
+stats	Stats.app
+maccy	Maccy.app
+localsend	LocalSend.app
+zed	Zed.app
+iterm2	iTerm.app
+joplin	Joplin.app
+aside	Aside.app
+cursor	Cursor.app
+claude	Claude.app
+visual-studio-code	Visual Studio Code.app
+orbstack	OrbStack.app
+raycast	Raycast.app
+obsidian	Obsidian.app
+bitwarden	Bitwarden.app

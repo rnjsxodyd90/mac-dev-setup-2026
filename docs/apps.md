@@ -2,7 +2,7 @@
 
 **Open-source first. Choose what you need, not everything on the list.**
 
-Homebrew metadata snapshot: **2026-09-20T17:34:31.694Z**.
+Homebrew metadata snapshot: **2026-09-20T17:39:51.157Z**.
 
 Versions are observations, not pins. Open-source classifications refer to upstream declared licenses; they are not a full bundled-dependency audit or a promise that hosted services are free. Follow the evidence links. Formula licenses come from Homebrew metadata; cask licenses are human-reviewed upstream evidence.
 

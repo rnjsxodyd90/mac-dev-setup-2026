@@ -22,7 +22,7 @@ Review version, homepage, compatibility and formula-license changes after refres
 
 ## Scheduled workflow
 
-Weekly on Monday at 08:17 UTC, plus manual dispatch and relevant pushes. A version, compatibility or formula-license change produces a failing freshness status (review needed), a downloadable report and one issue titled **Catalog freshness review**. The workflow updates that issue instead of creating duplicates. An HTTP failure means verification is incomplete, not that an app has vanished. Last valid committed data remains intact.
+Weekly on Monday at 08:17 UTC, plus manual dispatch and relevant pushes. A version, compatibility, app-bundle-name or formula-license change produces a failing freshness status (review needed), a downloadable report and one issue titled **Catalog freshness review**. The workflow updates that issue instead of creating duplicates. An HTTP failure means verification is incomplete, not that an app has vanished. Last valid committed data remains intact.
 
 Issue text includes a machine-readable marker so the workflow only updates its own issue. Updating the catalog is a deliberate maintainer action. After refreshing and reviewing, rerun the workflow and close the resolved issue. Forks must enable Actions and may need to adjust repository links. GitHub schedules can be delayed or disabled after inactivity.
 
@@ -38,3 +38,7 @@ Issue text includes a machine-readable marker so the workflow only updates its o
 ## Open-source policy
 
 Only the `optional` profile may contain entries not classified `open-source`. The catalog validator enforces this boundary and requires license evidence plus review timestamps. Formula-license metadata is checked automatically; cask/upstream licenses, optional services, trademarks and bundled dependency qualifications require human review. Free-of-charge and source-available are not synonyms for open source.
+
+## Rerun verification
+
+Stateful installer fixtures cover a partially configured Mac, a second apply, manually installed apps, invalid app folders, explicit upgrade checks and recovery from a partial failure. They must never invoke real Homebrew mutation commands. The committed app-bundle TSV is generated from Homebrew cask artifacts and validated alongside the Brewfiles. A supported cask needs one unambiguous safe `.app` basename. Changes to artifact names need a metadata refresh and human review. Do not claim app authenticity, app health or clean-Mac verification from these checks.
