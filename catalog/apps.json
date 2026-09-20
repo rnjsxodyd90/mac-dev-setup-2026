@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "edition": 2026,
+  "profiles": {
+    "essentials": "Small foundation: CLI utilities, passwords and windows",
+    "developer": "Editor, terminal and runtime tooling",
+    "ai": "Opt-in AI browser, editor and assistant",
+    "cloud": "Containers, Kubernetes and infrastructure tools",
+    "extras": "Alternatives: review before installing overlapping tools"
+  },
+  "packages": [
+    {
+      "id": "git",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "Git",
+      "why": "Version control",
+      "homepage": "https://git-scm.com",
+      "source": "https://formulae.brew.sh/api/formula/git.json"
+    },
+    {
+      "id": "gh",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "GitHub CLI",
+      "why": "Repositories, pull requests and issues from your terminal",
+      "homepage": "https://cli.github.com/",
+      "source": "https://formulae.brew.sh/api/formula/gh.json"
+    },
+    {
+      "id": "jq",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "jq",
+      "why": "Inspect and transform JSON",
+      "homepage": "https://jqlang.github.io/jq/",
+      "source": "https://formulae.brew.sh/api/formula/jq.json"
+    },
+    {
+      "id": "ripgrep",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "ripgrep",
+      "why": "Fast code search",
+      "homepage": "https://github.com/BurntSushi/ripgrep",
+      "source": "https://formulae.brew.sh/api/formula/ripgrep.json"
+    },
+    {
+      "id": "fzf",
+      "kind": "formula",
+      "profile": "essentials",
+      "name": "fzf",
+      "why": "Interactive fuzzy finding",
+      "homepage": "https://junegunn.github.io/fzf/",
+      "source": "https://formulae.brew.sh/api/formula/fzf.json"
+    },
+    {
+      "id": "bitwarden",
+      "kind": "cask",
+      "profile": "essentials",
+      "name": "Bitwarden",
+      "why": "Password manager; account and setup required",
+      "homepage": "https://bitwarden.com/",
+      "source": "https://formulae.brew.sh/api/cask/bitwarden.json"
+    },
+    {
+      "id": "rectangle",
+      "kind": "cask",
+      "profile": "essentials",
+      "name": "Rectangle",
+      "why": "Keyboard-driven window positioning",
+      "homepage": "https://rectangleapp.com/",
+      "source": "https://formulae.brew.sh/api/cask/rectangle.json"
+    },
+    {
+      "id": "ghostty",
+      "kind": "cask",
+      "profile": "developer",
+      "name": "Ghostty",
+      "why": "Native GPU-accelerated terminal",
+      "homepage": "https://ghostty.org/",
+      "source": "https://formulae.brew.sh/api/cask/ghostty.json"
+    },
+    {
+      "id": "visual-studio-code",
+      "kind": "cask",
+      "profile": "developer",
+      "name": "Visual Studio Code",
+      "why": "General-purpose editor",
+      "homepage": "https://code.visualstudio.com/",
+      "source": "https://formulae.brew.sh/api/cask/visual-studio-code.json"
+    },
+    {
+      "id": "mise",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "mise",
+      "why": "Manage project language runtimes explicitly",
+      "homepage": "https://mise.jdx.dev/",
+      "source": "https://formulae.brew.sh/api/formula/mise.json"
+    },
+    {
+      "id": "uv",
+      "kind": "formula",
+      "profile": "developer",
+      "name": "uv",
+      "why": "Python packages, projects and environments",
+      "homepage": "https://docs.astral.sh/uv/",
+      "source": "https://formulae.brew.sh/api/formula/uv.json"
+    },
+    {
+      "id": "aside",
+      "kind": "cask",
+      "profile": "ai",
+      "name": "Aside",
+      "why": "AI browser for tasks across websites; review account and data-access settings",
+      "homepage": "https://aside.com/",
+      "source": "https://formulae.brew.sh/api/cask/aside.json"
+    },
+    {
+      "id": "cursor",
+      "kind": "cask",
+      "profile": "ai",
+      "name": "Cursor",
+      "why": "AI-assisted code editor; alternative to VS Code",
+      "homepage": "https://www.cursor.com/",
+      "source": "https://formulae.brew.sh/api/cask/cursor.json"
+    },
+    {
+      "id": "claude",
+      "kind": "cask",
+      "profile": "ai",
+      "name": "Claude",
+      "why": "Desktop AI assistant; account and plan terms apply",
+      "homepage": "https://claude.com/download",
+      "source": "https://formulae.brew.sh/api/cask/claude.json"
+    },
+    {
+      "id": "orbstack",
+      "kind": "cask",
+      "profile": "cloud",
+      "name": "OrbStack",
+      "why": "Local containers and Linux machines; check commercial licensing",
+      "homepage": "https://orbstack.dev/",
+      "source": "https://formulae.brew.sh/api/cask/orbstack.json"
+    },
+    {
+      "id": "kubernetes-cli",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "kubectl",
+      "why": "Operate Kubernetes clusters; credentials are not configured",
+      "homepage": "https://kubernetes.io/docs/reference/kubectl/",
+      "source": "https://formulae.brew.sh/api/formula/kubernetes-cli.json"
+    },
+    {
+      "id": "helm",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "Helm",
+      "why": "Kubernetes package management",
+      "homepage": "https://helm.sh/",
+      "source": "https://formulae.brew.sh/api/formula/helm.json"
+    },
+    {
+      "id": "k9s",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "K9s",
+      "why": "Terminal interface for Kubernetes",
+      "homepage": "https://k9scli.io/",
+      "source": "https://formulae.brew.sh/api/formula/k9s.json"
+    },
+    {
+      "id": "opentofu",
+      "kind": "formula",
+      "profile": "cloud",
+      "name": "OpenTofu",
+      "why": "Infrastructure as code",
+      "homepage": "https://opentofu.org/",
+      "source": "https://formulae.brew.sh/api/formula/opentofu.json"
+    },
+    {
+      "id": "zed",
+      "kind": "cask",
+      "profile": "extras",
+      "name": "Zed",
+      "why": "Alternative code editor",
+      "homepage": "https://zed.dev/",
+      "source": "https://formulae.brew.sh/api/cask/zed.json"
+    },
+    {
+      "id": "iterm2",
+      "kind": "cask",
+      "profile": "extras",
+      "name": "iTerm2",
+      "why": "Alternative terminal",
+      "homepage": "https://iterm2.com/",
+      "source": "https://formulae.brew.sh/api/cask/iterm2.json"
+    },
+    {
+      "id": "raycast",
+      "kind": "cask",
+      "profile": "extras",
+      "name": "Raycast",
+      "why": "Launcher and productivity tools; check current architecture support",
+      "homepage": "https://raycast.com/",
+      "source": "https://formulae.brew.sh/api/cask/raycast.json"
+    },
+    {
+      "id": "obsidian",
+      "kind": "cask",
+      "profile": "extras",
+      "name": "Obsidian",
+      "why": "Local Markdown notes; optional services have separate terms",
+      "homepage": "https://obsidian.md/",
+      "source": "https://formulae.brew.sh/api/cask/obsidian.json"
+    }
+  ]
+}
